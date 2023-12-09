@@ -51,6 +51,17 @@ class LogInView: UIViewController {
                     let alert = self.makeAlert.makeAlert(titleInput: "Error", messageInput: error.localizedDescription)
                     self.present(alert, animated: true, completion: nil)
                 } else {
+
+                    let firestore = Firestore.firestore()
+                    let userDictionary = ["email": mail, "username": userName] as [String: Any]
+
+                    firestore.collection("UserInfo").addDocument(data: userDictionary) { (error) in
+                        if let error = error {
+                            let alert = self.makeAlert.makeAlert(titleInput: "Error", messageInput: error.localizedDescription)
+                            self.present(alert, animated: true, completion: nil)
+                        }
+                    }
+
                     let alert = self.makeAlert.makeAlert(titleInput: "Success", messageInput: "User Created")
                     self.present(alert, animated: true, completion: nil)
                     self.performSegue(withIdentifier: "toTabBar", sender: nil)
