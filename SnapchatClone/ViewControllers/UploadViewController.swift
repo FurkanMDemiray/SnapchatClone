@@ -45,23 +45,38 @@ class UploadViewController: UIViewController, UIImagePickerControllerDelegate & 
         let metadata = StorageMetadata()
         metadata.contentType = "image/jpeg"
 
-        let uploadTask = imageRef.putData(imageData, metadata: metadata) { (metadata, error) in
-            guard let metadata = metadata else {
+        imageRef.putData(imageData, metadata: metadata) { (metadata, error) in
+            if let metadata = metadata {
+                imageRef.downloadURL { url, error in
+                    if let error = error {
+                        let alert = self.makeAlert.makeAlert(titleInput: "Error", messageInput: error.localizedDescription)
+                        self.present(alert, animated: true, completion: nil)
+                    } else {
+                        let imageUrl = url?.absoluteString
+                        let fireStoreDatabase = Firestore.firestore()
+                        let snapDictionary = ["imageUrl": imageUrl!, "snapOwner": UserSingleton.sharedUserInfo.username, "date": FieldValue.serverTimestamp(), "timeDifference": FieldValue.serverTimestamp()] as [String: Any]
+
+                        fireStoreDatabase.collection("Snaps").addDocument(data: snapDictionary) { (error) in
+                            if error != nil {
+                                let alert = self.makeAlert.makeAlert(titleInput: "Error", messageInput: error?.localizedDescription ?? "Error")
+                                self.present(alert, animated: true, completion: nil)
+                            } else {
+                                //self.tabBarController?.selectedIndex = 0
+                                //self.imageView.image = UIImage(named: "select.png")
+                            }
+
+                        }
+                    }
+                }
+            }
+            else {
                 let alert = self.makeAlert.makeAlert(titleInput: "Error", messageInput: error?.localizedDescription ?? "Error")
                 self.present(alert, animated: true, completion: nil)
-                return
             }
             // Yükleme işlemi başarıyla tamamlandı
             let alert = self.makeAlert.makeAlert(titleInput: "Success", messageInput: "Image Uploaded")
             self.present(alert, animated: true, completion: nil)
         }
-
-        // İlerleme durumunu takip etmek için bir observer ekleyin (isteğe bağlı)
-        uploadTask.observe(.progress) { snapshot in
-            let percentComplete = 100.0 * Double(snapshot.progress!.completedUnitCount) / Double(snapshot.progress!.totalUnitCount)
-            print("Yükleme tamamlandı: \(percentComplete)%")
-        }
-
     }
 
 
