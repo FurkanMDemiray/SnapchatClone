@@ -21,7 +21,7 @@ class UploadViewController: UIViewController, UIImagePickerControllerDelegate & 
         imageView.isUserInteractionEnabled = true
         let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(chooseImage))
         imageView.addGestureRecognizer(gestureRecognizer)
-
+        getUserInfo()
     }
 
 
@@ -53,18 +53,56 @@ class UploadViewController: UIViewController, UIImagePickerControllerDelegate & 
                         self.present(alert, animated: true, completion: nil)
                     } else {
                         let imageUrl = url?.absoluteString
-                        let fireStoreDatabase = Firestore.firestore()
-                        let snapDictionary = ["imageUrl": imageUrl!, "snapOwner": UserSingleton.sharedUserInfo.username, "date": FieldValue.serverTimestamp(), "timeDifference": FieldValue.serverTimestamp()] as [String: Any]
+                        let db = Firestore.firestore()
 
-                        fireStoreDatabase.collection("Snaps").addDocument(data: snapDictionary) { (error) in
-                            if error != nil {
-                                let alert = self.makeAlert.makeAlert(titleInput: "Error", messageInput: error?.localizedDescription ?? "Error")
+                        db.collection("Snaps").whereField("snapOwner", isEqualTo: UserSingleton.sharedUserInfo.username).getDocuments { snapshot, error in
+                            if let error = error {
+                                let alert = self.makeAlert.makeAlert(titleInput: "Error", messageInput: error.localizedDescription)
                                 self.present(alert, animated: true, completion: nil)
                             } else {
-                                //self.tabBarController?.selectedIndex = 0
-                                //self.imageView.image = UIImage(named: "select.png")
-                            }
 
+                                if snapshot?.isEmpty == false && snapshot != nil {
+
+                                    for document in snapshot!.documents {
+
+                                        let documentId = document.documentID
+
+                                        if var imageUrlArray = document.get("imageUrlArray") as? [String] {
+                                            imageUrlArray.append(imageUrl!)
+
+                                            let additionalDictionary = ["imageUrlArray": imageUrlArray] as [String: Any]
+
+                                            db.collection("Snaps").document(documentId).setData(additionalDictionary, merge: true) { error in
+                                                if let error = error {
+                                                    let alert = self.makeAlert.makeAlert(titleInput: "Error", messageInput: error.localizedDescription)
+                                                    self.present(alert, animated: true, completion: nil)
+                                                } else {
+
+                                                }
+                                            }
+                                        }
+                                    }
+                                } else {
+                                    let snapDictionary = [
+                                        "imageUrlArray": [imageUrl!],
+                                        "snapOwner": UserSingleton.sharedUserInfo.username,
+                                        "date": FieldValue.serverTimestamp(),
+                                        "email": Auth.auth().currentUser!.email!,
+                                        "timeDifference": FieldValue.serverTimestamp()] as [String: Any]
+
+                                    db.collection("Snaps").addDocument(data: snapDictionary) { (error) in
+                                        if error != nil {
+                                            let alert = self.makeAlert.makeAlert(titleInput: "Error", messageInput: error?.localizedDescription ?? "Error")
+                                            self.present(alert, animated: true, completion: nil)
+                                        } else {
+                                            self.tabBarController?.selectedIndex = 0
+                                            //self.imageView.image = UIImage(named: "select.png")
+                                        }
+
+                                    }
+                                }
+
+                            }
                         }
                     }
                 }
@@ -79,6 +117,35 @@ class UploadViewController: UIViewController, UIImagePickerControllerDelegate & 
         }
     }
 
+    func getUserInfo() {
+
+        let firestoreDb = Firestore.firestore()
+
+        firestoreDb.collection("UserInfo").whereField("email", isEqualTo: Auth.auth().currentUser!.email!).getDocuments { snapshot, error in
+
+            if let error = error {
+                let alert = self.makeAlert.makeAlert(titleInput: "Error", messageInput: error.localizedDescription)
+                self.present(alert, animated: true, completion: nil)
+            } else {
+
+                if snapshot?.isEmpty == false && snapshot != nil {
+
+                    for document in snapshot!.documents {
+
+                        if let userName = document.get("username") as? String {
+
+                            UserSingleton.sharedUserInfo.username = userName
+                            UserSingleton.sharedUserInfo.email = Auth.auth().currentUser!.email!
+                        }
+
+                    }
+
+                }
+
+            }
+        }
+
+    }
 
     @objc func chooseImage() {
         let picker = UIImagePickerController()

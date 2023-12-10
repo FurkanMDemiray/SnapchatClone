@@ -27,6 +27,7 @@
 		DD3D11462B2358EA0082BDFC /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DD3D11452B2358EA0082BDFC /* GoogleService-Info.plist */; };
 		DD3D11482B238C910082BDFC /* MakeAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3D11472B238C910082BDFC /* MakeAlert.swift */; };
 		DD3D114C2B2501120082BDFC /* UserClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3D114B2B2501120082BDFC /* UserClass.swift */; };
+		DD3D114E2B25ED7D0082BDFC /* FeedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3D114D2B25ED7D0082BDFC /* FeedTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +45,7 @@
 		DD3D11452B2358EA0082BDFC /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		DD3D11472B238C910082BDFC /* MakeAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeAlert.swift; sourceTree = "<group>"; };
 		DD3D114B2B2501120082BDFC /* UserClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserClass.swift; sourceTree = "<group>"; };
+		DD3D114D2B25ED7D0082BDFC /* FeedTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +105,7 @@
 				DD3D113E2B2357980082BDFC /* FeedViewController.swift */,
 				DD3D11402B2357A50082BDFC /* UploadViewController.swift */,
 				DD3D11422B2357AD0082BDFC /* SettingsViewController.swift */,
+				DD3D114D2B25ED7D0082BDFC /* FeedTableViewCell.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -218,6 +221,7 @@
 				DD3D11482B238C910082BDFC /* MakeAlert.swift in Sources */,
 				DD3D10F12B234FE10082BDFC /* SceneDelegate.swift in Sources */,
 				DD3D11432B2357AD0082BDFC /* SettingsViewController.swift in Sources */,
+				DD3D114E2B25ED7D0082BDFC /* FeedTableViewCell.swift in Sources */,
 				DD3D114C2B2501120082BDFC /* UserClass.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
