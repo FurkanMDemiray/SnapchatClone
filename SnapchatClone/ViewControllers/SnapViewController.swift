@@ -6,12 +6,15 @@
 //
 
 import UIKit
+import ImageSlideshow
+import ImageSlideshowKingfisher
 
 class SnapViewController: UIViewController {
     @IBOutlet weak var timeLabel: UILabel!
 
     var selectedTimeLeft: Int?
     var selectedSnap: SnapModel?
+    var inputArray = [KingfisherSource]()
 
 
     override func viewDidLoad() {
@@ -20,6 +23,25 @@ class SnapViewController: UIViewController {
         if let timeLeft = selectedTimeLeft {
             timeLabel.text = "Time Left: \(timeLeft)"
         }
+
+
+        for imageUrl in selectedSnap!.imageUrlArray {
+
+            inputArray.append(KingfisherSource(urlString: imageUrl)!)
+        }
+
+        let imageSlideShow = ImageSlideshow(frame: CGRect(x: 10, y: 10, width: view.frame.width * 0.95, height: view.frame.height * 0.9))
+        imageSlideShow.backgroundColor = UIColor.white
+        imageSlideShow.contentScaleMode = .scaleAspectFit
+
+        let pageIndicator = UIPageControl()
+        pageIndicator.currentPageIndicatorTintColor = UIColor.black
+        pageIndicator.pageIndicatorTintColor = UIColor.lightGray
+        imageSlideShow.pageIndicator = pageIndicator
+
+        imageSlideShow.setImageInputs(inputArray)
+        self.view.addSubview(imageSlideShow)
+        self.view.bringSubviewToFront(timeLabel)
 
     }
 

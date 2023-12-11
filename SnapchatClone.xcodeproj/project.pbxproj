@@ -30,6 +30,8 @@
 		DD3D114E2B25ED7D0082BDFC /* FeedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3D114D2B25ED7D0082BDFC /* FeedTableViewCell.swift */; };
 		DD3D11522B26444C0082BDFC /* SnapModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3D11512B26444C0082BDFC /* SnapModel.swift */; };
 		DD3D11542B27363C0082BDFC /* SnapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3D11532B27363B0082BDFC /* SnapViewController.swift */; };
+		DD3D11572B273E200082BDFC /* ImageSlideshow in Frameworks */ = {isa = PBXBuildFile; productRef = DD3D11562B273E200082BDFC /* ImageSlideshow */; };
+		DD3D11592B273E200082BDFC /* ImageSlideshow/Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = DD3D11582B273E200082BDFC /* ImageSlideshow/Kingfisher */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -57,8 +59,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DD3D11572B273E200082BDFC /* ImageSlideshow in Frameworks */,
 				DD3D113D2B23507F0082BDFC /* SDWebImageMapKit in Frameworks */,
 				DD3D11162B23506A0082BDFC /* FirebaseDatabase in Frameworks */,
+				DD3D11592B273E200082BDFC /* ImageSlideshow/Kingfisher in Frameworks */,
 				DD3D111C2B23506A0082BDFC /* FirebaseFirestore in Frameworks */,
 				DD3D11202B23506A0082BDFC /* FirebaseFirestoreSwift in Frameworks */,
 				DD3D113B2B23507F0082BDFC /* SDWebImage in Frameworks */,
@@ -159,6 +163,8 @@
 				DD3D11352B23506A0082BDFC /* FirebaseStorage */,
 				DD3D113A2B23507F0082BDFC /* SDWebImage */,
 				DD3D113C2B23507F0082BDFC /* SDWebImageMapKit */,
+				DD3D11562B273E200082BDFC /* ImageSlideshow */,
+				DD3D11582B273E200082BDFC /* ImageSlideshow/Kingfisher */,
 			);
 			productName = SnapchatClone;
 			productReference = DD3D10EB2B234FE10082BDFC /* SnapchatClone.app */;
@@ -191,6 +197,7 @@
 			packageReferences = (
 				DD3D11022B23506A0082BDFC /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				DD3D11392B23507F0082BDFC /* XCRemoteSwiftPackageReference "SDWebImage" */,
+				DD3D11552B273E200082BDFC /* XCRemoteSwiftPackageReference "ImageSlideshow" */,
 			);
 			productRefGroup = DD3D10EC2B234FE10082BDFC /* Products */;
 			projectDirPath = "";
@@ -471,6 +478,14 @@
 				minimumVersion = 5.18.6;
 			};
 		};
+		DD3D11552B273E200082BDFC /* XCRemoteSwiftPackageReference "ImageSlideshow" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/zvonicek/ImageSlideshow";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.9.2;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -513,6 +528,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = DD3D11392B23507F0082BDFC /* XCRemoteSwiftPackageReference "SDWebImage" */;
 			productName = SDWebImageMapKit;
+		};
+		DD3D11562B273E200082BDFC /* ImageSlideshow */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DD3D11552B273E200082BDFC /* XCRemoteSwiftPackageReference "ImageSlideshow" */;
+			productName = ImageSlideshow;
+		};
+		DD3D11582B273E200082BDFC /* ImageSlideshow/Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DD3D11552B273E200082BDFC /* XCRemoteSwiftPackageReference "ImageSlideshow" */;
+			productName = ImageSlideshow/Kingfisher;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
