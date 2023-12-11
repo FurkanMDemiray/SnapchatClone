@@ -8,6 +8,7 @@
 import UIKit
 import Firebase
 import SDWebImage
+import ImageSlideshowKingfisher
 
 class FeedViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
@@ -41,7 +42,10 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! FeedTableViewCell
 
         cell.userNameLbl.text = snapArray[indexPath.row].username
+        cell.imageView?.contentMode = .scaleAspectFit
+        cell.imageView?.clipsToBounds = true
         cell.imageView?.sd_setImage(with: URL(string: snapArray[indexPath.row].imageUrlArray[0]))
+        //cell.imageView?.kf.setImage(with: URL(string: snapArray[indexPath.row].imageUrlArray[0]))
 
         return cell
     }
@@ -82,7 +86,7 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     func getSnapsFromFirebase() {
 
-        db.collection("Snaps").whereField("email", isEqualTo: Auth.auth().currentUser!.email!).getDocuments { snapshot, error in
+        db.collection("Snaps").getDocuments { snapshot, error in
             if let error = error {
                 let alert = self.makeAlert.makeAlert(titleInput: "Error", messageInput: error.localizedDescription)
                 self.present(alert, animated: true, completion: nil)
@@ -104,16 +108,11 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
                                         self.present(alert, animated: true, completion: nil)
                                     }
                                 }
+                            } else {
+                                let snap = SnapModel(username: userName, imageUrlArray: imageUrlArray, date: date.dateValue(), timeLeft: 24 - difference)
+                                self.snapArray.append(snap)
                             }
-
-                            self.timeLeft = 24 - difference
-
-
                         }
-
-                        let snap = SnapModel(username: userName, imageUrlArray: imageUrlArray, date: date.dateValue())
-                        self.snapArray.append(snap)
-
                     }
                     self.tableView.reloadData()
                 }
@@ -128,7 +127,6 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
         if segue.identifier == "toSnapVc" {
             let destinationVC = segue.destination as! SnapViewController
             destinationVC.selectedSnap = choosenSnap
-            destinationVC.selectedTimeLeft = self.timeLeft
         }
     }
 
