@@ -28,6 +28,8 @@
 		DD3D11482B238C910082BDFC /* MakeAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3D11472B238C910082BDFC /* MakeAlert.swift */; };
 		DD3D114C2B2501120082BDFC /* UserClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3D114B2B2501120082BDFC /* UserClass.swift */; };
 		DD3D114E2B25ED7D0082BDFC /* FeedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3D114D2B25ED7D0082BDFC /* FeedTableViewCell.swift */; };
+		DD3D11522B26444C0082BDFC /* SnapModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3D11512B26444C0082BDFC /* SnapModel.swift */; };
+		DD3D11542B27363C0082BDFC /* SnapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3D11532B27363B0082BDFC /* SnapViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +48,8 @@
 		DD3D11472B238C910082BDFC /* MakeAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeAlert.swift; sourceTree = "<group>"; };
 		DD3D114B2B2501120082BDFC /* UserClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserClass.swift; sourceTree = "<group>"; };
 		DD3D114D2B25ED7D0082BDFC /* FeedTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedTableViewCell.swift; sourceTree = "<group>"; };
+		DD3D11512B26444C0082BDFC /* SnapModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapModel.swift; sourceTree = "<group>"; };
+		DD3D11532B27363B0082BDFC /* SnapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +110,7 @@
 				DD3D11402B2357A50082BDFC /* UploadViewController.swift */,
 				DD3D11422B2357AD0082BDFC /* SettingsViewController.swift */,
 				DD3D114D2B25ED7D0082BDFC /* FeedTableViewCell.swift */,
+				DD3D11532B27363B0082BDFC /* SnapViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -115,6 +120,7 @@
 			children = (
 				DD3D11472B238C910082BDFC /* MakeAlert.swift */,
 				DD3D114B2B2501120082BDFC /* UserClass.swift */,
+				DD3D11512B26444C0082BDFC /* SnapModel.swift */,
 			);
 			path = "Classes&Structs";
 			sourceTree = "<group>";
@@ -217,10 +223,12 @@
 				DD3D10F32B234FE10082BDFC /* LogInView.swift in Sources */,
 				DD3D11412B2357A50082BDFC /* UploadViewController.swift in Sources */,
 				DD3D10EF2B234FE10082BDFC /* AppDelegate.swift in Sources */,
+				DD3D11542B27363C0082BDFC /* SnapViewController.swift in Sources */,
 				DD3D113F2B2357980082BDFC /* FeedViewController.swift in Sources */,
 				DD3D11482B238C910082BDFC /* MakeAlert.swift in Sources */,
 				DD3D10F12B234FE10082BDFC /* SceneDelegate.swift in Sources */,
 				DD3D11432B2357AD0082BDFC /* SettingsViewController.swift in Sources */,
+				DD3D11522B26444C0082BDFC /* SnapModel.swift in Sources */,
 				DD3D114E2B25ED7D0082BDFC /* FeedTableViewCell.swift in Sources */,
 				DD3D114C2B2501120082BDFC /* UserClass.swift in Sources */,
 			);

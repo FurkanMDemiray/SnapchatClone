@@ -46,7 +46,7 @@ class UploadViewController: UIViewController, UIImagePickerControllerDelegate & 
         metadata.contentType = "image/jpeg"
 
         imageRef.putData(imageData, metadata: metadata) { (metadata, error) in
-            if let metadata = metadata {
+            if metadata != nil {
                 imageRef.downloadURL { url, error in
                     if let error = error {
                         let alert = self.makeAlert.makeAlert(titleInput: "Error", messageInput: error.localizedDescription)

@@ -26,7 +26,7 @@ class LogInView: UIViewController {
 
     @IBAction func logInButtonClicked(_ sender: Any) {
 
-        if let mail = mailText.text, let password = passwordText.text, let userName = userNameText.text {
+        if let mail = mailText.text, let password = passwordText.text {
 
             Auth.auth().signIn(withEmail: mail, password: password) { (authResult, error) in
                 if let error = error {
